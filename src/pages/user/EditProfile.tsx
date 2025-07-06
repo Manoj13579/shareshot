@@ -38,12 +38,11 @@ const EditProfile = () => {
   const updateProfile = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      let response;
       //if  there is profile on post created already
       if (id) {
-        response = await updateUserProfile(id, data);
+         await updateUserProfile(id, data);
       } else {
-        response = await createUserProfile(data);
+         await createUserProfile(data);
       }
 
       const profileInfo: ProfileInfo = {
