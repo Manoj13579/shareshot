@@ -25,8 +25,7 @@ const DirectMessage = () => {
   const [selectedUser, setSelectedUser] = useState<UserProfile | null>(null);
   const [messages, setMessages] = useState<any[]>([]);
 const navigate = useNavigate();
-  console.log('Direct message component rendered');
-  console.log('selected user', selectedUser);
+  
   
 
 const getSuggestedUsers = async (userId: string) => {
@@ -129,7 +128,6 @@ It receives the new messages prop and displays them in order.
         updateLastSeen(user.uid);
          getSuggestedUsers(user.uid);
       }, 60 * 1000);
-      console.log("updateLastSeen useEffect called");
      
     return () => {
       clearInterval(interval);
@@ -152,8 +150,6 @@ useEffect(() => {
 let isOnline = false;
   if (selectedUser?.lastSeen?.toMillis) {
     isOnline = (Date.now() - selectedUser.lastSeen.toMillis()) < 2 * 60 * 1000;
-    console.log("selectedUser isOnline", isOnline);
-    
   }
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 h-screen">
