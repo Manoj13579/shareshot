@@ -109,9 +109,7 @@ Updates the local user state when a user logs in or logs out.
 Cleans up the listener on component unmount. */
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, (user) => {
-    console.log("I am in useEffect and user is : ", user);
     if (user) {
-     console.log("The logged in user state is : ", user);
   setUser(user);
      }
   });

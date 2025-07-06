@@ -93,11 +93,6 @@ export const updateLastSeen = async (userId: string) => {
           await updateDoc(userDoc.ref, {
             lastSeen: serverTimestamp(),
           });
-         // Fetch the updated document after the update
-      const updatedUserDoc = await getDoc(userDoc.ref);
-      
-      // Log the updated data
-      console.log('Updated user data:', updatedUserDoc.data());
         }
         
       } catch (err) {
