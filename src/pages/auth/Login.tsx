@@ -51,7 +51,6 @@ const Login = () => {
       const loginResponse = await logIn(userLogInInfo.email, userLogInInfo.password);
       if(loginResponse){
         const response = await getUserRole(loginResponse.user?.uid);
-        console.log("user role", response);
         navigate(response?.role === "user" ? "/user-dashboard-layout" : "/admin-dashboard");
         toast.success("Signed in successfully");
       }

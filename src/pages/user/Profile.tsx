@@ -25,7 +25,7 @@ const Profile = () => {
   const [userInfo, setUserInfo] =
     useState<ProfileResponse>(initialUserInfo);
   const [data, setData] = useState<DocumentResponse[]>([]);
-  console.log('user', user);
+  
   
   const getAllPost = async (id: string) => {
     try {
