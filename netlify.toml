@@ -1,0 +1,8 @@
+# toml is just a file format for configuration. when using netlify need to add this for react
+# react gives all frontend files on first click(unless lazy loading used). it is served as static file three files html, # js, css(/index.html, /static/js/main.js, /static/css/main.css) by netlify to browser. when homepage refreshed /static/js/# main.js  is here so works. other pages not here so when refreshed throws error..so adding netlify.toml with /index.html # all routes request now handled through index.html.
+# when not refreshed works coz all files are in browser so ./dashboard works this request is handled in browser. but when #refreshed ./dashboard request goes to server/netlify coz netlify serves only static file it won't find this route. but # # when redirected all routes to the index.html file react router handles from there.
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
