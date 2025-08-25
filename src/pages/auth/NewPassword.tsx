@@ -22,7 +22,7 @@ const handleSubmit = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
     setButtonDisabled(true);
     try {
-      //password for first google sign in to become credential login
+      /* for first google sign in to make same email account for  signInWithEmailAndPassword too user needs to update password. in firebase in updating password automatically user will be created for signInWithEmailAndPassword. this logic is also for just updating password too*/
        const alreadyUser = await getUserRole(user?.uid!);
        if(!alreadyUser?.role){
          const userr = {id: user?.uid!, role: 'user' };
