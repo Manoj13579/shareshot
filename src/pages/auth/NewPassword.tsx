@@ -5,6 +5,7 @@ import { Label } from "@radix-ui/react-label";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router";
+import { createUserRole, getUserRole } from "@/repository/userRole.service";
 
 
 
@@ -21,6 +22,12 @@ const handleSubmit = async (e: React.MouseEvent<HTMLFormElement>) => {
     e.preventDefault();
     setButtonDisabled(true);
     try {
+      //password for first google sign in to become credential login
+       const alreadyUser = await getUserRole(user?.uid!);
+       if(!alreadyUser?.role){
+         const userr = {id: user?.uid!, role: 'user' };
+             await createUserRole(userr);
+       }
          await newPassword(user!, password);
          setPassword("");  
          toast.success("Password updated successfully", {duration: 5000});

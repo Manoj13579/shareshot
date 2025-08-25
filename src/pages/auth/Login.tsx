@@ -36,7 +36,9 @@ const Login = () => {
   const handleGoogleSignIn = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     try {
-      await googleSignIn();
+     const response = await googleSignIn();
+     console.log(response.user?.uid);
+     
       toast.success("Signed in successfully");
       navigate("/user-dashboard-layout");
     } catch (error: any) {
@@ -50,8 +52,8 @@ const Login = () => {
     try {
       const loginResponse = await logIn(userLogInInfo.email, userLogInInfo.password);
       if(loginResponse){
-        const response = await getUserRole(loginResponse.user?.uid);
-        navigate(response?.role === "user" ? "/user-dashboard-layout" : "/admin-dashboard");
+         const response = await getUserRole(loginResponse.user?.uid);
+       navigate(response?.role === "user" ? "/user-dashboard-layout" : "/admin-dashboard");
         toast.success("Signed in successfully");
       }
     } catch (error: any) {
@@ -97,7 +99,7 @@ const Login = () => {
                 </CardHeader>
                 <CardContent className="grid gap-4">
                   <div className="grid">
-                    <Button variant="outline" onClick={handleGoogleSignIn}>
+                    <Button variant="outline" type="button" onClick={handleGoogleSignIn}>
                       <Icons.google className="mr-2 h-4 w-4" />
                       Google
                     </Button>
